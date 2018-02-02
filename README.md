@@ -1,3 +1,3 @@
 # MyVimConfig
 
-Reminding install Git, then install (Vundle)[https://github.com/VundleVim/Vundle.vim], to do :PluginInstall. 
+Reminding install Git and [Vundle][https://github.com/VundleVim/Vundle.vim], finally need to do :PluginInstall. 
