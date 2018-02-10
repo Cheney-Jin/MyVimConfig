@@ -14,10 +14,12 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
+
 " git repos on your local machine (i.e. when working on your own plugin)
 " Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -26,18 +28,19 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
+
 " Markdown Plugin
 Plugin 'tamlok/vim-markdown'
 
-" Markdown Review
+" Markdown math support
 Plugin 'iamcco/mathjax-support-for-mkdp'
+
+" Markdown Preview
+"lugin 'suan/vim-instant-markdown'
 Plugin 'iamcco/markdown-preview.vim'
 
-"Markdown 预览
-let g:mkdp_path_to_chrome="chrome"
-let g:mkdp_auto_close=0
-nmap <F7> <Plug>MarkdownPreview
-nmap <F8> <Plug>StopMarkdownPreview
+" NerdTree
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -87,7 +90,7 @@ function MyDiff()
 endfunction
 
 if has("gui_running")
-  "au GUIEnter * simalt ~x " 窗口启动时自动最大化
+  au GUIEnter * simalt ~x " 窗口启动时自动最大化
   set guioptions-=m " 隐藏菜单栏
   set guioptions-=T " 隐藏工具栏
   set guioptions-=L " 隐藏左侧滚动条
@@ -96,14 +99,11 @@ if has("gui_running")
   set showtabline=0 " 隐藏Tab栏
 endif
 
-"全屏
-au GUIEnter * simalt ~x
-
 "设置配色方案
-colorscheme detorte
-
+set background=dark
+colorscheme solarized
 "更改字体
-set guifont=Consolas:h13
+set guifont=Monaco:h12
 
 "设置编码
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
@@ -133,5 +133,23 @@ filetype plugin indent on
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 map <F12> :!python.exe %
 
+"配置PowerLine
+set rtp+=D:/Python27/Lib/site-packages/powerline/bindings/bash/powerline.sh
+set nocompatible
+set t_Co=256
+let g:minBufExplForceSyntaxEnable = 1
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+set laststatus=2 
+set noshowmode
 
+"Markdown 预览
+let g:mkdp_path_to_chrome="google-chrome"
+let g:mkdp_auto_close=0
+nmap <F7> <Plug>MarkdownPreview
+nmap <F8> <Plug>StopMarkdownPreview
+
+" 配置NerdTree
+autocmd vimenter * NERDTree
 
